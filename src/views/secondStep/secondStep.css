@@ -1,0 +1,50 @@
+.second-step {
+		width: 557px;
+		animation: slide-left 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+}
+
+@keyframes slide-left {
+	0% {
+		transform: translateX(-100px);
+		opacity: 0;
+	}
+
+	100% {
+		transform: translateX(0);
+		opacity: 1;
+	}
+}
+
+.second-step-title {
+	margin: 28px 0;
+}
+
+.second-step-form {
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+	margin-bottom: 68px;
+}
+
+.step-fomr-label {
+	padding: 16px 24px;
+	margin-bottom: 16px;
+	border: 1px solid #DFDFDF;
+	box-sizing: border-box;
+	border-radius: 8px;
+	transition: all 0.5s ease;
+}
+
+.step-fomr-label:last-child {
+	margin-bottom: 0;
+}
+
+.step-fomr-label.active {
+	border: 1px solid #CD8B65;
+}
+
+.label__span {
+	font-weight: 800;
+}
+
+

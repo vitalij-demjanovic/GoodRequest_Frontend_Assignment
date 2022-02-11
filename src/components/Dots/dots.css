@@ -1,0 +1,24 @@
+.dosts {
+	display: flex;
+}
+
+.dot {
+	display: block;
+	width: 21px;
+	height: 6px;
+	background-color: #9F9F9F;
+	opacity: 0.36;
+	border-radius: 10px;
+	margin-right: 5px;
+	transition: all 0.5s ease;	
+}
+
+.dot:last-child {
+	margin-right: 0;
+}
+
+.dot.active {
+	background: linear-gradient(94.75deg, rgba(0, 0, 0, 0.24) 0%, rgba(0, 0, 0, 0) 100.7%),	#CD8B65;
+	opacity: 1;
+	width: 44px;
+}

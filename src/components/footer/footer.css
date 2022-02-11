@@ -1,0 +1,35 @@
+.footer {
+	max-width: 1140px;
+	padding: 96px 0;
+	margin: 0 auto;
+	display: flex;
+	justify-content: space-between;
+	border-top: 1px solid rgba(47, 47, 47, 0.16);
+}
+
+.footer-links_title,
+.foundation-title {
+	font-weight: 800;
+	margin-bottom: 24px;
+}
+
+.links-item {
+	margin-bottom: 14px;
+}
+
+.links-item a {
+	color: #585757;
+}
+
+.links-item:last-child {
+	margin-bottom: 0;
+}
+
+.footer-foundation {
+	width: 170px;
+}
+
+.foundation-text {
+	color:#585757;
+}
+

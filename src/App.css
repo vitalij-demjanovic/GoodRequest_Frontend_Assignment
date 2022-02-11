@@ -1,38 +1,130 @@
-.App {
-  text-align: center;
+body {
+  padding: 0;
+  margin: 0;
+  font-family: 'Public Sans', sans-serif;
+  font-size: 16px;
+  color: #000;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+* {
+  box-sizing: border-box;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+ul, li {
+  display: block;
+  padding: 0;
+  margin: 0;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+h1 {
+  font-family: 'Hind', sans-serif;
+  font-weight: 700;
+  font-size: 46px;
+}
+
+h1,h2, h3 {
+  padding: 0;
+  margin: 0;
+  color: #000000;
+  font-weight: 700;
+  line-height: 1em;
+}
+
+svg {
+  display: block;
+}
+
+input, button {
+  background-color: transparent;
+  border: none;
+  outline: none;
+  padding: 0;
+  font-family: 'Public Sans',
+  sans-serif;
+  font-weight: 400;
+}
+
+img {
+  max-width: 100%;
+  object-fit: cover;
+}
+
+button {
+  cursor: pointer;
+}
+
+p {
+  margin: 0;
+  padding: 0;
+  color:#585757;
+  font-weight: 600;
+}
+
+a {
+  color: #000;
+  text-decoration: none;
+  transition: all 0.5s ease;
+}
+
+.container {
+  margin: 0 auto;
+  padding-top: 89px;
+  max-width: 990px;
+}
+
+.about {
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  justify-content: space-between;
+  padding: 28px 0 159px;
 }
 
-.App-link {
-  color: #61dafb;
+.step-btns {
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+.step-btns-space {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+
+/*Response*/
+
+/* Large: 992px - 1199px */
+@media (max-width: 1199px) {
+  .n-container {
+    max-width: 960px;
   }
-  to {
-    transform: rotate(360deg);
+}
+
+/* Medium: 768px - 991px */
+@media (max-width: 991px) {
+  .n-container {
+    max-width: 720px;
+  }
+}
+
+/* Small: 576px - 767px */
+@media (max-width: 767px) {
+  .n-container {
+    max-width: 540px;
+  }
+}
+
+@media (max-width: 460px) {
+  .n-container {
+    max-width: 100%;
+    padding: 0 15px;
+  }
+}
+
+
+/* Extra small: 0px (320px) - 575px */
+@media (max-width: 575px) {
+  .n-container {
+    max-width: 100%;
+    padding: 0 15px;
   }
 }

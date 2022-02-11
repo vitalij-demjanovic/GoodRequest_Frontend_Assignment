@@ -1,25 +1,58 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from 'react'
+import './App.css'
+import Footer from './components/footer/footer.jsx';
+import Mask from './assets/img/MaskGroup.png'
+import Dots from './components/Dots/Dots';
+import BackButton from './components/Button/BackButton'
+import Button from './components/Button/Button';
+import FirstStep from './views/firsStep/firstStep';
+import SecondStep from './views/secondStep/secondStep'
+import ThirdStep from './views/thirdStep/thirdStep';
 
-function App() {
+const App = () => {
+  const [currStep, setCurrStep] = useState(0);
+
+  const STEPS = [
+    <FirstStep/>,
+    <SecondStep/>,
+    <ThirdStep/>
+  ]
+
+  const navigation = () => {
+    setCurrStep(currStep + 1)
+    if(currStep === STEPS.length -1) {
+      setCurrStep(0)
+    }
+  }
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+      <>
+        <div className='container'>
+          <Dots dot={`step${currStep + 1}`}/>
+          <div className='about'>
+            <div className='steps'>
+              {STEPS[currStep]}
+              <div className={
+                currStep > 0
+                    ? 'step-btns-space'
+                    : 'step-btns'}>
+                <BackButton view={
+                  currStep > 0
+                      ? 'view'
+                      : ''}
+                            back={
+                              () => (setCurrStep(currStep - 1))
+                            }/>
+                <Button name='Pokračovať' next={navigation}/>
+              </div>
+            </div>
+            <div className='mask'>
+              <img src={Mask} alt='mask'/>
+            </div>
+          </div>
+        </div>
+        <Footer />
+      </>
   );
-}
+};
 
 export default App;

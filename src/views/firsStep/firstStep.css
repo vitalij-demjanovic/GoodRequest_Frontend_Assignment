@@ -91,7 +91,63 @@
 	background: #FFFFFF;
 	border: 1px solid #DFDFDF;
 	border-radius: 8px;
+	position: relative;
 }
+
+.shelters-list:hover {
+	border-radius: 8px 8px 0 0;
+}
+
+.shelters-list:hover > .shelters-option {
+	height: 300px;
+	border: solid #DFDFDF;
+	border-width: 0 1px 1px 1px;
+}
+
+.shelters-option {
+	position: absolute;
+	background: #ffffff;
+	border-radius: 0 0 8px 8px;
+	font-size: 16px;
+	width: 100%;
+	top: 100%;
+	left: 0;
+	right: 0;
+	cursor: pointer;
+	overflow: auto;
+	height: 0;
+	transition: all 0.3s ease;
+}
+
+
+.shelters-option::-webkit-scrollbar {
+	width: 8px;
+}
+
+.shelters-option::-webkit-scrollbar-track {
+	background: transparent;
+}
+
+.shelters-option::-webkit-scrollbar-thumb {
+	background: #BB6B3D;
+	border-radius: 8px;
+}
+
+.list__item {
+	padding: 10px 16px;
+	transition: all 0.5s;
+	font-weight: 800;
+}
+
+.list__item:last-child {
+	border-radius: 0 0 8px 8px;
+}
+
+.list__item:hover {
+	background: #a8a7a7;
+}
+
+
 
 .list__preset {
 	display: flex;

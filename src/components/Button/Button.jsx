@@ -1,10 +1,12 @@
 import React from 'react';
-import './button.css'
+import classNames from 'classnames';
+import styles from './button.css'
+const cx = classNames.bind(styles);
 
 const Button = (props) => {
 
 	return (
-		<button className='btn' onClick={props.next}>
+		<button type={props.type} form={props.form} className={cx('btn', props.disable)} onClick={props.next}>
 			{props.name}
 		</button>
 	);

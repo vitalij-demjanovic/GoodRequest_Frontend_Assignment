@@ -1,14 +1,17 @@
 import React from 'react';
-import classNames from 'classnames'
-import styles from './button.css'
-const cx = classNames.bind(styles);
+import { connect } from 'react-redux';
+import './button.css'
 
 const BackButton = (props) => {
 	return (
-		<button className={cx('back-btn', props.view)} onClick={props.back}>
+		<button className='back-btn' onClick={props.back}>
 			Späť 
 		</button>
 	);
 };
 
-export default BackButton;
+export default connect(
+	(state) => ({
+		currStep: state.form.currStep
+	})
+)(BackButton);

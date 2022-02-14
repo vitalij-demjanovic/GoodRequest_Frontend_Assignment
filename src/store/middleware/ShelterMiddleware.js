@@ -2,10 +2,10 @@ import {getSheltersRequest, getSheltersSuccess} from "../actions";
 
 export const ShelterMiddleware = (store) => (next) => async (action) => {
     if (action.type === getSheltersRequest.toString()) {
-        fetch('https://frontend-assignment-api.goodrequest.dev/api/v1/shelters', { method: 'GET' })
+        fetch('https://jsonplaceholder.typicode.com/users', { method: 'GET' })
             .then(res => res.json())
             .then(data => {
-                store.dispatch(getSheltersSuccess(data.shelters))
+                store.dispatch(getSheltersSuccess(data))
             })
             .catch(err => {
                 throw new Error(err)

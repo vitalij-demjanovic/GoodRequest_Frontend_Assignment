@@ -215,3 +215,9 @@
 	font-weight: 800;
 	border-bottom: 1px solid #c9c9c9;
 }
+
+.step-btns {
+	width: 100%;
+	display: flex;
+	justify-content: flex-end;
+}

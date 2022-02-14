@@ -27,19 +27,41 @@
 }
 
 .step-fomr-label {
-	padding: 16px 24px;
 	margin-bottom: 16px;
+	transition: all 0.5s ease;
+	position: relative;
+}
+
+.step-fomr-label input {
+	width: 100%;
 	border: 1px solid #DFDFDF;
 	box-sizing: border-box;
 	border-radius: 8px;
-	transition: all 0.5s ease;
+	padding: 37px 24px 16px;
+	background:#fff;
+}
+
+input[type="text"] {
+	background: transparent;
+}
+
+.label__span {
+	position: absolute;
+	top: 32px;
+	left: 24px;
+	overflow: hidden;
 }
 
 .step-fomr-label:last-child {
 	margin-bottom: 0;
 }
 
-.step-fomr-label.active {
+.step-fomr-label.wrong input{
+	border: 1px solid rgba(217, 23, 23, 0.75);
+	box-shadow: 10px 10px 134px -34px rgba(217, 23, 23, 0.75);
+}
+
+.step-fomr-label :focus {
 	border: 1px solid #CD8B65;
 }
 

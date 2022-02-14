@@ -4,19 +4,31 @@ import classNames from 'classnames'
 import wallet from '../../assets/icon/walletWhite.svg'
 import paw from '../../assets/icon/pawWhite.svg'
 import dropdown from '../../assets/icon/dropdown.svg'
+import { store } from '../../store/store'
+import { getNextStep } from '../../store/actions';
+import { getFirstStep } from '../../store/actions';
 import styles from './firstStep.css'
 import { getSheltersRequest } from "../../store/actions";
+import Button from '../../components/Button/Button';
 const cx = classNames.bind(styles);
 
 const FirstStep = (props) => {
 	const [sumActive, setSum] = useState(0)
-	const [ shelt, SetShelt ] = useState('Vyberte útulok zo zoznamu')
-	const [gift, setGift] = useState('all');
-	const sumArg = ['5 €', '10 €', '20 €', '30 €', '50 €', '100 €']
+	const [mony, SetMony] = useState(5)
+	const [shelt, SetShelt ] = useState('')
+	const [shelterID, SetShelterID] = useState(0)
+	const [gift, setGift] = useState('celej nadácii');
+	const sumArg = [5, 10, 20, 30, 50, 100]
 
 	useEffect(() => {
 			props.getSheltersRequest()
 	}, [props])
+
+	const StepControl = () => {
+		const etap = {shelter: shelt, value: mony, gift: gift, shelterID: shelterID}
+		store.dispatch(getFirstStep(etap))
+		store.dispatch(getNextStep(1))
+	}
 
 	const mass = props.list || []
 
@@ -27,8 +39,10 @@ const FirstStep = (props) => {
 			</h1>
 			<div className="option-gift">
 				<div
-				className={cx('gift__first', gift === 'one' ? 'active' : '')}
-				onClick={() => (setGift('one'))}
+				className={cx('gift__first', gift === 'konkrétnemu útulku' ? 'active' : '')}
+				onClick={() => {
+					setGift('konkrétnemu útulku')
+				}}
 				>
 					<div className="first__img">
 						<img src={wallet} alt="walet" className='walet'/>
@@ -38,8 +52,10 @@ const FirstStep = (props) => {
 					</p>
 				</div>
 				<div
-				className={cx('gift__second', gift === 'all' ? 'active' : '')}
-				onClick={() => (setGift('all'))}
+				className={cx('gift__second', gift === 'celej nadácii' ? 'active' : '')}
+				onClick={() => {
+					setGift('celej nadácii')
+				}}
 				>
 					<div className="second__img">
 						<img src={paw} alt="paw" className='paw' />
@@ -56,7 +72,7 @@ const FirstStep = (props) => {
 				</div>
 				<div className="shelters-list">
 					<div className="list__preset">
-						<span className='list__span'><strong>Útulok</strong><br />{shelt}</span>
+						<span className='list__span'><strong>Útulok</strong><br />{shelt === '' ? 'Vyberte útulok zo zoznamu' : shelt}</span>
 						<img src={dropdown} alt="arrow" className='list__arrow'/>
 					</div>
 					<div className="shelters-option">
@@ -65,7 +81,10 @@ const FirstStep = (props) => {
 								<li
 									className="list__item"
 									key={item.id}
-									onClick={() => {SetShelt(item.name)}}>
+									onClick={() => {
+										SetShelt(item.name)
+										SetShelterID(item.id)
+										}}>
 									{item.name}
 								</li>
 							))}
@@ -81,23 +100,32 @@ const FirstStep = (props) => {
 					{sumArg.map((sum, index) => (
 					<li
 					key={index}
-					onClick={(e) => (setSum(index))}
+					onClick={(e) => {
+						setSum(index);
+						SetMony(sum)
+					}}
 					className={cx('sum-list_item', sumActive === index ? 'active' : '')}>
-						{sum}
+						{sum} €
 					</li>
 					))}
 					<li
 					onClick={() => (setSum('value'))}
 					className={cx('sum-list_item', 'value-item', sumActive === 'value' ? 'active' : '' )}>
-						<input type="text"/> €
+						<input type="text" name='value'/> €
 						</li>
 				</ul>
+			</div>
+			<div className="step-btns">
+					<Button name='Pokračovať' next={StepControl}/>
 			</div>
 		</div>
 	);
 };
 
 export default connect(
-	(state) => ({list: state.shelters.list}),
-	{getSheltersRequest}
+	(state) => ({
+		list: state.shelters.list,
+		first: state.form.first
+	}),
+	{getSheltersRequest, getNextStep}
 )(FirstStep);

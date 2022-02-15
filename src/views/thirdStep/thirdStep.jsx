@@ -1,12 +1,13 @@
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import { store } from '../../store/store';
-import { getBackStep } from '../../store/actions';
+import { getBackStep , getNextStep} from '../../store/actions';
 import Button from '../../components/Button/Button';
 import BackButton from '../../components/Button/BackButton';
 import classNames from 'classnames'
 import styles from './thirdStep.css'
 import Done from '../../assets/icon/done.svg'
+import axios from 'axios';
 const cx = classNames.bind(styles);
 
 
@@ -14,6 +15,7 @@ const ThirdStep = (props) => {
 	const [done, setdone] = useState(false);
 
 	const BackStep = () => {store.dispatch(getBackStep(1))}
+
 
 	const HendelSend = () => {
 		const dataSend = {
@@ -24,20 +26,14 @@ const ThirdStep = (props) => {
 			phone: props.second.phone,
 			shelterID: props.first.shelterID
 		}
-		fetch(' https://frontend-assignment-api.goodrequest.dev/api/v1/shelters/contribute', {
-  method: 'POST', // or 'PUT'
-  headers: {
-    'Content-Type': 'application/json',
-  },
-  body: JSON.stringify(dataSend),
-})
-.then(response => response.json())
-.then(data => {
-  console.log('Success:', data);
-})
-.catch((error) => {
-  console.error('Error:', error);
-});
+		axios.post('https://frontend-assignment-api.goodrequest.dev/api/v1/shelters/contribute', dataSend)
+		.then((response) => {
+    console.log(response.data.messages);
+		store.dispatch(getNextStep(0))
+  })
+  .catch((error) => {
+    console.log(error);
+  });
 	}
 
 	return (
@@ -60,7 +56,7 @@ const ThirdStep = (props) => {
 				</div>
 				<div className="summary-block">
 					<span className='block-span'>Meno a priezvisko</span>
-					<p className="block-value">{props.second.firsName} {props.second.lastName}</p>
+					<p className="block-value">{props.second.firstName} {props.second.lastName}</p>
 				</div>
 				<div className="summary-block">
 					<span className='block-span'>E-mailová adresa</span>
@@ -101,5 +97,5 @@ export default connect(
 		first: state.form.first,
 		second: state.form.second
 	}),
-	{getBackStep}
+	{getBackStep, getNextStep}
 )(ThirdStep);

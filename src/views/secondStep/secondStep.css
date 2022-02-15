@@ -26,47 +26,69 @@
 	margin-bottom: 68px;
 }
 
-.step-fomr-label {
-	margin-bottom: 16px;
-	transition: all 0.5s ease;
-	position: relative;
-}
-
-.step-fomr-label input {
-	width: 100%;
+.step-form-label {
 	border: 1px solid #DFDFDF;
 	box-sizing: border-box;
 	border-radius: 8px;
-	padding: 37px 24px 16px;
+	padding: 16px 24px;
 	background:#fff;
-}
-
-input[type="text"] {
-	background: transparent;
-}
-
-.label__span {
-	position: absolute;
-	top: 32px;
-	left: 24px;
-	overflow: hidden;
-}
-
-.step-fomr-label:last-child {
-	margin-bottom: 0;
-}
-
-.step-fomr-label.wrong input{
-	border: 1px solid rgba(217, 23, 23, 0.75);
-	box-shadow: 10px 10px 134px -34px rgba(217, 23, 23, 0.75);
-}
-
-.step-fomr-label :focus {
-	border: 1px solid #CD8B65;
-}
-
-.label__span {
+	margin-bottom: 16px;
+	transition: all 0.5s ease;
 	font-weight: 800;
 }
 
+.flex-label {
+display: flex;
+color: #9f9f9f;
+font-weight: 400;
+font-size: 16px;
+align-items: center;
+position: relative;
+}
 
+.label-flags {
+	position: absolute;
+	left: -10px;
+	background:#fff;
+	padding: 10px;
+	top: 100%;
+	display: flex;
+	flex-direction: column;
+	display: none;
+}
+
+.label-flags.active {
+	display: block;
+}
+
+/* .flex-label::before{
+	content: '';
+	margin-right: 12px;
+	width: 25px;
+	height: 15px;
+	display: block;
+	background-color: black;
+} */
+
+.label__img {
+	margin-right: 12px;
+	cursor: pointer;
+}
+
+
+.flag__img {
+	margin-bottom: 10px;
+}
+
+.step-form-label input {
+	width: 100%;
+}
+
+
+.step-form-label:last-child {
+	margin-bottom: 0;
+}
+
+.flag-input {
+	margin-left: 10px;
+}

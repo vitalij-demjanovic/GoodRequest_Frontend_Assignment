@@ -1,5 +1,5 @@
 import { combineReducers } from "redux";
-import shelters from './SheltersReducer'
+import shelt from './SheltersReducer'
 import form from './formReducer'
 
-export default  combineReducers({shelters, form})
+export default  combineReducers({shelt, form})

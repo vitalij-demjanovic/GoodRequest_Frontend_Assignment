@@ -1,39 +1,29 @@
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import { store } from '../../store/store';
-import { getBackStep , getNextStep} from '../../store/actions';
+import {getBackStep, getNextStep, postSendForm} from '../../store/actions';
 import Button from '../../components/Button/Button';
 import BackButton from '../../components/Button/BackButton';
 import classNames from 'classnames'
 import styles from './thirdStep.css'
 import Done from '../../assets/icon/done.svg'
-import axios from 'axios';
 const cx = classNames.bind(styles);
 
 
 const ThirdStep = (props) => {
 	const [done, setdone] = useState(false);
-
 	const BackStep = () => {store.dispatch(getBackStep(1))}
-
+	const dataSend = {
+		firstName: props.second.firstName,
+		lastName: props.second.lastName,
+		email: props.second.email,
+		value: props.first.value,
+		phone: props.second.phone,
+		shelterID: props.first.shelterID
+	}
 
 	const HendelSend = () => {
-		const dataSend = {
-			firstName: props.second.firstName,
-			lastName: props.second.lastName,
-			email: props.second.email,
-			value: props.first.value,
-			phone: props.second.phone,
-			shelterID: props.first.shelterID
-		}
-		axios.post('https://frontend-assignment-api.goodrequest.dev/api/v1/shelters/contribute', dataSend)
-		.then((response) => {
-    console.log(response.data.messages);
-		store.dispatch(getNextStep(0))
-  })
-  .catch((error) => {
-    console.log(error);
-  });
+		props.postSendForm(dataSend)
 	}
 
 	return (
@@ -97,5 +87,5 @@ export default connect(
 		first: state.form.first,
 		second: state.form.second
 	}),
-	{getBackStep, getNextStep}
+	{getBackStep, getNextStep, postSendForm}
 )(ThirdStep);

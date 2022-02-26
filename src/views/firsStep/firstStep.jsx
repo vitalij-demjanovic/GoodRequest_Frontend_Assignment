@@ -168,7 +168,7 @@ const FirstStep = (props) => {
 
 export default connect(
 	(state) => ({
-		list: state.shelters.list,
+		list: state.shelt.list,
 		first: state.form.first
 	}),
 	{getSheltersRequest, getNextStep}

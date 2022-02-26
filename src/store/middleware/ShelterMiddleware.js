@@ -1,20 +1,14 @@
 import {getSheltersRequest, getSheltersSuccess} from "../actions";
-import axios from 'axios';
+import {serverShelter} from "../../api/api";
 
 
 export const ShelterMiddleware = (store) => (next) => async (action) => {
     if (action.type === getSheltersRequest.toString()) {
-        axios.get('https://frontend-assignment-api.goodrequest.dev/api/v1/shelters')
-  .then(function (response) {
-    store.dispatch(getSheltersSuccess(response.data.shelters))
-    console.log(response.data)
-  })
-  .catch(function (error) {
-    console.log(error);
-  })
+        const { shelters } = await serverShelter()
+        if (shelters) {
+            store.dispatch(getSheltersSuccess(shelters))
+        }
     } else {
      next(action)
     }
 }
-
-
